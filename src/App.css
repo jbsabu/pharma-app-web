@@ -7,6 +7,44 @@
   pointer-events: none;
 }
 
+.logo-img {
+  /* filter: invert(); */
+  color:white;
+  transition: all 0.5s;
+  height: 2% !important;
+  max-width: 10% !important;
+  display: flex;
+  border-image: linear-gradient(red, blue) 27 !important;
+  -webkit-filter: drop-shadow(1px 1px 0 rgb(174, 171, 171))
+    drop-shadow(-1px -1px 0 rgb(141, 140, 140));
+  filter: drop-shadow(1px 1px 0 rgb(221, 127, 127)) 
+  drop-shadow(-1px -1px 0 rgb(53, 121, 184));
+
+}
+
+.logo-img:hover {
+  transition: all 0.5s;
+  filter: invert();
+  filter: drop-shadow(2px 2px 0 rgb(221, 127, 127)) 
+  drop-shadow(-2px -2px 0 rgb(53, 121, 184));
+
+}
+
+.ana-container {
+  height: 200%!important
+}
+
+.ana-col::after{
+  position: absolute!important;
+}
+
+.c-1 {
+  background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);  background-position: absolute;
+  background-attachment: fixed;
+  backdrop-filter: blur(5px);
+  height: 100%!important;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
