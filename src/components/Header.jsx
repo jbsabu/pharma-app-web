@@ -12,7 +12,7 @@ export default function Header ( ) {
   }
   return (
   <>
-       <Navbar bg="light" variant="light">
+       <Navbar variant="light" className="bar">
         <Container>
           {/* <Navbar.Brand href="#home">Navbar</Navbar.Brand> */}
             <Navbar.Brand ><Image className="logo-img" src = {image}  fluid/> </Navbar.Brand>

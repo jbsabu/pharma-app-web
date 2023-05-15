@@ -1,11 +1,18 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+:root {
+  --maindark : #1f1f1f;
+  --manila: #fff6e6
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+
+body {
+  text-align: center;
+  background-color: #1f1f1f!important;
+  color: white!important;
+  font-family: 'Roboto Mono', monospace!important;
 }
+
+
 
 .logo-img {
   /* filter: invert(); */
@@ -30,16 +37,96 @@
 
 }
 
+.pc {
+
+  color: #e4100c
+}
+
+.sc {
+  color:#0c63e4
+}
+
 .ana-container {
-  height: 200%!important
+  height: 200%!important;
+  padding-top: 1%;
+  border: 1px!important;
+  border-color: aliceblue;
+
+}
+
+.accordion-button {
+    --bs-accordion-active-bg: initial!important;
+}
+
+h3 {
+  font-variant: small-caps
+
+}
+
+.accordion {
+  --bs-accordion-bg: #1f1f1f!important;
+  --bs-accordion-color:white!important;
+  --bs-accordion-btn-color: white!important
+}
+
+.data-spec{
+  font-weight: 500;
+  font-variant: small-caps;
+}
+
+.drug-spec-data {
+  font-weight: 200;
+  text-align: left!important;
+}
+
+.drugCategories {
+  font-variant: small-caps;
+}
+
+.drugSubtype {
+  font-variant: small-caps;
 }
 
 .ana-col::after{
   position: absolute!important;
 }
 
+.form-control {
+  background-color: #fff6e6!important;
+}
+
+.drug-label-ph {
+  color: #2e2e2d!important;
+  font-weight: 200;
+}
+
+.drug-list {
+  --bs-list-group-bg:#fff6e6!important;
+}
+
+.drug-typeahead {
+  padding-bottom: 5%;
+}
+
+.drug-lg{
+  text-align: left!important;
+}
+
+.drug-lg:hover{
+  background-color: var(--maindark)!important;
+  color: #fff6e6 !important;
+  border: 1px solid #fff6e6!important;
+}
+
+.navbar {
+  background-color: #fff6e6!important;
+}
+
+
+
 .c-1 {
-  background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);  background-position: absolute;
+  /* background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);  background-position: absolute; */
+
   background-attachment: fixed;
   backdrop-filter: blur(5px);
   height: 100%!important;
@@ -51,19 +138,30 @@
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
+
 
 .App-link {
   color: #61dafb;
+}
+
+.c-2 {
+  padding-top: 5%!important;
+}
+
+.ef-green {
+  color: rgb(129, 206, 239);
+  /* text-align: right!important; */
+}
+
+.resp-recep {
+  color: rgb(252, 69, 69)!important;
+  font-weight: 300!important;
+  /* text-align: right!important; */
+}
+
+.ef-red {
+  color: rgb(252, 176, 69);
+  /* text-align: right!important; */
 }
 
 @keyframes App-logo-spin {
