@@ -173,7 +173,7 @@ export default function StackAnalysis({
 
             {effectCategories[effect].map((effect) => {
               return  <Accordion.Item  eventKey={effect.mechanism}>
-                    <Accordion.Header><span className="data-spec resp-recep">{effect.receptor}   &nbsp;</span> <br /> predicted response:   <span className={effect.effect > 0 ? "ef-green" : "ef-red"}><br/> &nbsp; {effect.effect}</span> </Accordion.Header>{" "}
+                    <Accordion.Header><span className="data-spec resp-recep">{effect.receptor}   &nbsp;</span> <br /> predicted response:   <span className={effect.effect > 0 ? "ef-green" : "ef-red"}><br/> &nbsp; {effect.effect > 0 ? `+${effect.effect}`:effect.effect}</span> </Accordion.Header>{" "}
                     <Accordion.Body>
                         <span className="data-spec">receptor</span>{" "}
                         {effect.receptor} <br />

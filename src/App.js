@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Analyze from "./scenes/Analyze";
+import Login from "./components/Login";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Routes>
         <Route path = '/'  />
         <Route path = '/analyze'  Component = {Analyze} />
+        <Route path = '/login'  Component = {Login} />
 
         </Routes>
       </BrowserRouter>

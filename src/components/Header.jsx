@@ -19,7 +19,7 @@ export default function Header ( ) {
           <Nav className="me-auto">
             <Nav.Link href="#home">Home</Nav.Link>
             <Nav.Link href="" id = '/analyze' onClick={OnClick}>Analyze</Nav.Link>
-            <Nav.Link href="#pricing">Pricing</Nav.Link>
+            <Nav.Link href="/login">Login&nbsp; Register</Nav.Link>
           </Nav>
         </Container>
       </Navbar>
