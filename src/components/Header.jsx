@@ -10,6 +10,7 @@ export default function Header ( ) {
   // useNavigate(e.target.value)
   navigate(e.target.id)
   }
+  //      <Nav.Link href="/adddrug">New Substance</Nav.Link>
   return (
   <>
        <Navbar variant="light" className="bar">
@@ -19,7 +20,11 @@ export default function Header ( ) {
           <Nav className="me-auto">
             <Nav.Link href="#home">Home</Nav.Link>
             <Nav.Link href="" id = '/analyze' onClick={OnClick}>Analyze</Nav.Link>
-            <Nav.Link href="#pricing">Pricing</Nav.Link>
+      
+          </Nav>
+          <Nav className="me-auto">
+          <Nav.Link href="/adddrug"><span className="addition">+</span> Substance</Nav.Link>
+          <Nav.Link href="/addreceptor"><span className="addition">+</span> Receptor</Nav.Link>
           </Nav>
         </Container>
       </Navbar>

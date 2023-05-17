@@ -69,6 +69,40 @@ h3 {
   --bs-accordion-btn-color: white!important
 }
 
+.delete {
+  color: #e4100c!important;
+  border-color: #e4100c!important;
+  font-variant: small-caps;
+}
+
+.delete:hover {
+  background-color: #e4100c!important;
+  border-color: #ffffff!important;
+  color: white !important;
+  font-variant: small-caps;
+}
+
+/* ===== Scrollbar CSS ===== */
+  /* Firefox */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #0d6efd #ffffff;
+  }
+
+  /* Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 13px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: #ffffff00;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: #9c9c9c;
+    border-radius: 10px;
+    border: 3px solid #ffffff00;
+  }
 .data-spec{
   font-weight: 500;
   font-variant: small-caps;
@@ -77,6 +111,36 @@ h3 {
 .drug-spec-data {
   font-weight: 200;
   text-align: left!important;
+}
+.add-field-container{
+  display: flexbox !important;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  border: 1px solid #ced4da!important;
+  border-radius: 5px;
+  height: 50%!important;
+  max-height: 50%!important;
+  flex-grow: 20;
+  flex-shrink: 0;
+  overflow-y: scroll
+}
+
+.list-group-item {
+  background-color: var(--maindark)!important;
+  color: #ddd4c3!important;
+  --bs-list-group-border-color: #ddd4c3!important;
+}
+
+.addition {
+  color:#0d6efd
+}
+
+.addition:hover {
+  color:rgb(86, 216, 66)
+}
+
+.required{
+  border-color: #b2b7bd!important;
 }
 
 .drugCategories {
@@ -101,7 +165,7 @@ h3 {
 }
 
 .drug-list {
-  --bs-list-group-bg:#fff6e6!important;
+  --bs-list-group-bg:#ddd4c3!important;
 }
 
 .drug-typeahead {
@@ -116,6 +180,7 @@ h3 {
   background-color: var(--maindark)!important;
   color: #fff6e6 !important;
   border: 1px solid #fff6e6!important;
+  text-shadow: #0c63e4;
 }
 
 .navbar {
@@ -146,6 +211,7 @@ h3 {
 
 .c-2 {
   padding-top: 5%!important;
+  border: 10px #1f1f1f!important;
 }
 
 .ef-green {
@@ -154,9 +220,14 @@ h3 {
 }
 
 .resp-recep {
-  color: rgb(252, 69, 69)!important;
+  color: rgb(237, 69, 252)!important;
   font-weight: 300!important;
+  font-size: 14px;
   /* text-align: right!important; */
+}
+
+.data-info {
+  font-weight: 200!important;
 }
 
 .ef-red {

@@ -166,21 +166,21 @@ export default function StackAnalysis({
       accordItems[i]= (
         <Accordion.Item eventKey={effect}>
           {" "}
-          <Accordion.Header> {effect} </Accordion.Header>{" "}
+          <Accordion.Header> {effect}<><span className={"ef-green"}> &nbsp; {effects.agonist[effect]>0?'+'+effects.agonist[effect]:effects.agonist[effect]}</span><span className={"ef-red"}> &nbsp; {effects.antagonist[effect]}</span></></Accordion.Header>{" "}
           <Accordion.Body>
             {" "}
             <Accordion flush>
 
             {effectCategories[effect].map((effect) => {
               return  <Accordion.Item  eventKey={effect.mechanism}>
-                    <Accordion.Header><span className="data-spec resp-recep">{effect.receptor}   &nbsp;</span> <br /> predicted response:   <span className={effect.effect > 0 ? "ef-green" : "ef-red"}><br/> &nbsp; {effect.effect}</span> </Accordion.Header>{" "}
+                    <Accordion.Header><span className="data-spec resp-recep">{effect.receptor}   &nbsp;</span> <br /> predicted response:   <span className={effect.effect > 0 ? "ef-green" : "ef-red"}><br/> &nbsp; {effect.effect > 0 ? `+${effect.effect}`:effect.effect}</span> </Accordion.Header>{" "}
                     <Accordion.Body>
                         <span className="data-spec">receptor</span>{" "}
-                        {effect.receptor} <br />
+                        <span className="data-info"> {effect.receptor} <br /> </span>
                         <span className="data-spec">activity</span>{" "}
-                        {effect.activity} <br />
+                        <span className="data-info">{effect.activity} <br /> </span>
                         <span className="data-spec">mechanism</span>{" "}
-                        {effect.mechanism} <br />
+                        <span className="data-info"> {effect.mechanism} <br /> </span>
                   
                    </Accordion.Body>
                    </Accordion.Item>
