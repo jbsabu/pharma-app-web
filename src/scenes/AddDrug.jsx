@@ -12,6 +12,7 @@ import {
 
 export default function AddDrug() {
   const [formData, setFormData] = useState({ newAgonist: "" });
+
   const [agonistInp, setAgonistInp] = useState([]);
   const [antagonistInp, setAntagonistInp] = useState([]);
   const [agonists, setAgonists] = useState({});
@@ -44,10 +45,10 @@ export default function AddDrug() {
         <Button
           variant="outline-secondary"
           id="button-addon1"
-          className="delete_"
+          className="delete"
           onClick={(e) => {
             deleteField(label,setState,state); //  setState, state
-            // const call = onDelete ? onDelete(label) : () => {};
+            const call = onDelete ? onDelete(label) : () => {};
           }}
         >
           X
@@ -61,22 +62,10 @@ export default function AddDrug() {
   };
 
   const deleteField = (name, setState, state) => {
-    // setState(
-    //   state.filter((item) => {
-        
-    //     console.log(item);
-    //     if (item.key !== name) return item ;
-    //   })
-    // );
+    setState(prevState => (
+      prevState.filter(item => item.key !== name)
+    ));
     console.log(agonistInp,state)
-    // for (let i = 0; i < state.length; i++) {
-    //   console.log(state[i].key,name,state[i].key === name);
-        // if (state[i].key === name) {
-        //     console.log("found");
-        //     setState(state.splice(i, 1));
-        //     return
-        //     }
-    // }
   };
 
   return (

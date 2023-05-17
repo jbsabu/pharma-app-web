@@ -167,11 +167,8 @@ h3 {
 }
 
 .drug-list {
-<<<<<<< HEAD
   --bs-list-group-bg:#ddd4c3!important;
-=======
   --bs-list-group-bg: #fff6e6 !important;
->>>>>>> 78baa8819c59571f5ea8bde1b3405a31241f8c77
 }
 
 .drug-typeahead {
@@ -185,12 +182,9 @@ h3 {
 .drug-lg:hover {
   background-color: var(--maindark) !important;
   color: #fff6e6 !important;
-<<<<<<< HEAD
   border: 1px solid #fff6e6!important;
   text-shadow: #0c63e4;
-=======
   border: 1px solid #fff6e6 !important;
->>>>>>> 78baa8819c59571f5ea8bde1b3405a31241f8c77
 }
 
 .navbar {
@@ -216,12 +210,9 @@ h3 {
 }
 
 .c-2 {
-<<<<<<< HEAD
   padding-top: 5%!important;
   border: 10px #1f1f1f!important;
-=======
   padding-top: 5% !important;
->>>>>>> 78baa8819c59571f5ea8bde1b3405a31241f8c77
 }
 
 .ef-green {
@@ -230,16 +221,13 @@ h3 {
 }
 
 .resp-recep {
-<<<<<<< HEAD
   color: rgb(237, 69, 252)!important;
   font-weight: 300!important;
   font-size: 14px;
-=======
   color: rgb(252, 69, 69) !important;
   font-weight: 300 !important;
   font-size: small;
   margin-bottom: 10%;
->>>>>>> 78baa8819c59571f5ea8bde1b3405a31241f8c77
   /* text-align: right!important; */
 }
 
