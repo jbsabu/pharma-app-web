@@ -16,6 +16,7 @@ function App() {
         <Route path = '/analyze'  Component = {Analyze} />
         <Route path = '/adddrug'  Component = {AddDrug} />
 
+        <Route path = '/login'  Component = {Login} />
 
         </Routes>
       </BrowserRouter>

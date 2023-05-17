@@ -25,6 +25,7 @@ export default function Header ( ) {
           <Nav className="me-auto">
           <Nav.Link href="/adddrug"><span className="addition">+</span> Substance</Nav.Link>
           <Nav.Link href="/addreceptor"><span className="addition">+</span> Receptor</Nav.Link>
+            <Nav.Link href="/login">Login&nbsp; Register</Nav.Link>
           </Nav>
         </Container>
       </Navbar>
