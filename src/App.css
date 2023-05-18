@@ -2,6 +2,7 @@
 :root {
   --maindark: #1f1f1f;
   --manila: #fff6e6;
+  --bs-border-color: #fff6e6!important;
 }
 
 body {
@@ -83,6 +84,12 @@ h3 {
   font-variant: small-caps;
 }
 
+.modal-body,.modal-header,.modal-footer {
+  background-color: #1f1f1f !important;
+  color: white !important;
+}
+
+
 /* ===== Scrollbar CSS ===== */
   /* Firefox */
   * {
@@ -108,12 +115,17 @@ h3 {
 .data-spec {
   font-weight: 500;
   font-variant: small-caps;
+  font-size: larger;
 }
 
 .drug-spec-data {
   font-weight: 200;
   text-align: left !important;
 }
+.add-substance-accord{
+  --bs-accordion-border-width: 0px !important;
+}
+
 .add-field-container{
   display: flexbox !important;
   padding-top: 1%;
