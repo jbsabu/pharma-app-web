@@ -246,11 +246,17 @@ export default function AddDrug() {
     console.log(agonistInp, state);
   };
 
+const [tStyles, setTStyles] = useState({});
+
   return (
     <>
       <br />
       <Container>
+
         <Accordion defaultActiveKey={"0"} className="add-substance-accord">
+        <Button onClick={()=>{setTStyles((tStyles !== undefined)? undefined : "button2")}} className={tStyles}>
+asdasdasd
+        </Button>   
           <Accordion.Item eventKey="1">
             <Accordion.Header>Review & Submit</Accordion.Header>
             <Accordion.Body>

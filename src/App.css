@@ -20,9 +20,9 @@ body {
   /* transition: all 0.5s; */
   opacity: .7;
 
-  height: 2% !important;
-  max-width: 10% !important;
-  display: flex;
+  /* height: 5% !important;
+  max-width: 15% !important; */
+  /* display: flex; */
   border-image: linear-gradient(red, blue) 27 !important;
   -webkit-filter: drop-shadow(1px 1px 0 rgb(174, 171, 171))
     drop-shadow(-1px -1px 0 rgb(141, 140, 140));
@@ -134,7 +134,7 @@ h3 {
   border-radius: 5px;
   height: 50%!important;
   max-height: 50%!important;
-  flex-grow: 20;
+  /* flex-grow: 20; */
   flex-shrink: 0;
   overflow-y: scroll
 }
@@ -149,12 +149,32 @@ h3 {
   color:#0d6efd
 }
 
-.addition:hover {
+.addition:hover { 
   color:rgb(86, 216, 66)
 }
 
 .required{
   border-color: #b2b7bd!important;
+}
+
+.animateOnce {
+  animation: splash 1s normal forwards ease-in-out;
+}
+
+
+@keyframes hover {
+  0% {
+      transform: scale(1, 1);
+  }
+  1% {
+      transform: scale(1.1, 1.1);
+  }
+  100% {
+      transform: scale(1.1, 1.1);
+  }
+}
+.button2 {
+  animation: hover 1s ease-in-out forwards;
 }
 
 .drugCategories {
