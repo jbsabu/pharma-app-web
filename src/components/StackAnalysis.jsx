@@ -162,35 +162,72 @@ export default function StackAnalysis({
     console.log(effects, effectCategories);
     // return <>data here</>;
     const accordItems = []; // accordion items
-    Object.keys(effectCategories).forEach((effect,i) => {
-      accordItems[i]= (
+    Object.keys(effectCategories).forEach((effect, i) => {
+      accordItems[i] = (
         <Accordion.Item eventKey={effect}>
           {" "}
-          <Accordion.Header> {effect}<><span className={"ef-green"}> &nbsp; {effects.agonist[effect]>0?'+'+effects.agonist[effect]:effects.agonist[effect]}</span><span className={"ef-red"}> &nbsp; {effects.antagonist[effect]}</span></></Accordion.Header>{" "}
+          <Accordion.Header>
+            {" "}
+            {effect}
+            <>
+              <span className={"ef-green"}>
+                {" "}
+                &nbsp;{" "}
+                {effects.agonist[effect] > 0
+                  ? "+" + effects.agonist[effect]
+                  : effects.agonist[effect]}
+              </span>
+              <span className={"ef-red"}>
+                {" "}
+                &nbsp; {effects.antagonist[effect]}
+              </span>
+            </>
+          </Accordion.Header>{" "}
           <Accordion.Body>
             {" "}
             <Accordion flush>
-
-            {effectCategories[effect].map((effect) => {
-              return  <Accordion.Item  eventKey={effect.mechanism}>
-                    <Accordion.Header><span className="data-spec resp-recep">{effect.receptor}   &nbsp;</span> <br /> predicted response:   <span className={effect.effect > 0 ? "ef-green" : "ef-red"}><br/> &nbsp; {effect.effect > 0 ? `+${effect.effect}`:effect.effect}</span> </Accordion.Header>{" "}
+              {effectCategories[effect].map((effect) => {
+                return (
+                  <Accordion.Item eventKey={effect.mechanism}>
+                    <Accordion.Header>
+                      <span className="data-spec resp-recep">
+                        {effect.receptor} &nbsp;
+                      </span>{" "}
+                      <br /> predicted response:{" "}
+                      <span
+                        className={effect.effect > 0 ? "ef-green" : "ef-red"}
+                      >
+                        <br /> &nbsp;{" "}
+                        {effect.effect > 0
+                          ? `+${effect.effect}`
+                          : effect.effect}
+                      </span>{" "}
+                    </Accordion.Header>{" "}
                     <Accordion.Body>
-                        <span className="data-spec">receptor</span>{" "}
-                        <span className="data-info"> {effect.receptor} <br /> </span>
-                        <span className="data-spec">activity</span>{" "}
-                        <span className="data-info">{effect.activity} <br /> </span>
-                        <span className="data-spec">mechanism</span>{" "}
-                        <span className="data-info"> {effect.mechanism} <br /> </span>
-                  
-                   </Accordion.Body>
-                   </Accordion.Item>
-            })}{" "}
+                      <span className="data-spec">receptor</span>{" "}
+                      <span className="data-info">
+                        {" "}
+                        {effect.receptor} <br />{" "}
+                      </span>
+                      <span className="data-spec">activity</span>{" "}
+                      <span className="data-info">
+                        {effect.activity} <br />{" "}
+                      </span>
+                      <span className="data-spec">mechanism</span>{" "}
+                      <span className="data-info">
+                        {" "}
+                        {effect.mechanism} <br />{" "}
+                      </span>
+                    </Accordion.Body>
+                  </Accordion.Item>
+                );
+              })}{" "}
             </Accordion>
           </Accordion.Body>{" "}
         </Accordion.Item>
       );
     });
-    return  accordItems;
+    return accordItems;
   };
 
   return (

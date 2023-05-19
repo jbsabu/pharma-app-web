@@ -74,7 +74,6 @@ export default function Analyze() {
     selDrugsRef[e[0].name] = e[0];
     setSelectedDrugs(selDrugsRef);
     console.log(e);
-
     setSelected("")
     setSelectedDrugsElements(
       Object.keys(selectedDrugs).map((drug, i) => {
@@ -184,4 +183,4 @@ export default function Analyze() {
       </Container>
     </>
   );
-}
+} 

@@ -6,6 +6,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Analyze from "./scenes/Analyze";
 import AddDrug from "./scenes/AddDrug";
 import Login from "./components/Login";
+import DrugList from "./components/DrugList";
 
 
 function App() {
@@ -17,8 +18,9 @@ function App() {
         <Route path = '/'  />
         <Route path = '/analyze'  Component = {Analyze} />
         <Route path = '/adddrug'  Component = {AddDrug} />
-
         <Route path = '/login'  Component = {Login} />
+        <Route path = '/druglist'  Component = {DrugList} />
+
 
         </Routes>
       </BrowserRouter>
