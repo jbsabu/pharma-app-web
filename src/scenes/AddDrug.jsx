@@ -131,7 +131,7 @@ export default function AddDrug() {
     console.log(fullData);
     const config = {
       method: "post",
-      url: "http://localhost:3031/adddrug",
+      url: "https://us-central1-pharma-app-js.cloudfunctions.net/api/adddrug",
       data: fullData,
       headers: {
         authorization: localStorage.getItem("token"),

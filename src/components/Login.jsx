@@ -36,7 +36,7 @@ export default function Login() {
       console.log(res)
       const config = {
 
-        url: 'http://localhost:3031/verifyAuth',
+        url: 'https://us-central1-pharma-app-js.cloudfunctions.net/api/verifyAuth',
         headers:{
           authentication: res.user.accessToken
         }

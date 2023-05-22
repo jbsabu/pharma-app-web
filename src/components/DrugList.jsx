@@ -34,7 +34,7 @@ export default function DrugList() {
   const getData = async () => {
     const config = {
       method: "get",
-      url: "http://localhost:3031/getdrugs",
+      url: "https://us-central1-pharma-app-js.cloudfunctions.net/api/getdrugs",
     };
 
     await axios(config).then((response) => {
@@ -49,7 +49,7 @@ export default function DrugList() {
   const onDelete = async (drug) => {
     const config = {
       method: "post",
-      url: "http://localhost:3031/deletedrug",
+      url: "https://us-central1-pharma-app-js.cloudfunctions.net/api/deletedrug",
       headers: {
         authorization: isLoggedIn(),
       },

@@ -42,7 +42,7 @@ export default function Analyze() {
   const getReceptorData = async () => {
     const config = {
       method: "get",
-      url: "http://localhost:3031/getreceptors",
+      url: "https://us-central1-pharma-app-js.cloudfunctions.net/api/getreceptors",
     };
     await axios(config)
       .then((result) => {
@@ -177,7 +177,7 @@ export default function Analyze() {
   const getData = async () => {
     getReceptorData();
     const config = {
-      url: "http://localhost:3031/getdrugs",
+      url: "https://us-central1-pharma-app-js.cloudfunctions.net/api/getdrugs",
     };
     await axios(config).then((result) => {
       let labeledData = [];
