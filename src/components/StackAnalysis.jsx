@@ -7,7 +7,7 @@ export default function StackAnalysis({
   drugList,
   receptors,
   key,
-  setEffects
+  setEffects,
 }) {
   //   console.log("?dsfs", selectedDrugs, drugList, stackReceptors);
 
@@ -65,7 +65,7 @@ export default function StackAnalysis({
     //   });
     //   return oldReceptors;
     // });
-  
+
     // console.log(stackAnalysis);
     const oldReceptors = stackReceptors;
     Object.keys(selectedDrugs).map((drug, i) => {
@@ -73,7 +73,12 @@ export default function StackAnalysis({
       // console.log("key!!!!!!",key,selectedDrugs, oldReceptors);
       selectedDrugs[drug].agonist.forEach((agonist) => {
         if (!oldReceptors[agonist]) {
-          oldReceptors[agonist] = { agonism: 0, antagonism: 0,agonist:{},antagonist:{} };
+          oldReceptors[agonist] = {
+            agonism: 0,
+            antagonism: 0,
+            agonist: {},
+            antagonist: {},
+          };
         } else {
           oldReceptors[agonist].agonism++;
           oldReceptors[agonist].agonist[agonist] = true;
@@ -84,7 +89,12 @@ export default function StackAnalysis({
       });
       selectedDrugs[drug].antagonist.forEach((antagonist) => {
         if (!oldReceptors[antagonist]) {
-          oldReceptors[antagonist] = { agonism: 0, antagonism: 0 ,agonist:{},antagonist:{[antagonist] : true}};
+          oldReceptors[antagonist] = {
+            agonism: 0,
+            antagonism: 0,
+            agonist: {},
+            antagonist: { [antagonist]: true },
+          };
         } else {
           oldReceptors[antagonist].antagonism++;
           oldReceptors[antagonist].antagonist[antagonist] = true;
@@ -107,11 +117,16 @@ export default function StackAnalysis({
   };
 
   const GetReceptorElements = () => {
-    console.log(stackReceptors,"ERR ERR ERR ERR ERRERR ERR ERR ERR ERRERR ERR ERR ERR ERRERR ERR ERR ERR ERRERR ERR ERR ERR ERRERR ERR ERR ERR ERRERR ERR ERR ERR ERRERR ERR ERR ERR ERR")
+    console.log(
+      stackReceptors,
+      "ERR ERR ERR ERR ERRERR ERR ERR ERR ERRERR ERR ERR ERR ERRERR ERR ERR ERR ERRERR ERR ERR ERR ERRERR ERR ERR ERR ERRERR ERR ERR ERR ERRERR ERR ERR ERR ERR"
+    );
     const elements = [];
     {
       Object.keys(stackReceptors).map((receptor, i) => {
-        console.log("ERR ERR ERR ERR ERR NOT NOT NOTRR ERR ERR NOT NOT NOTRR ERR ERR NOT NOT NOTRR ERR ERR NOT NOT NOT ")
+        console.log(
+          "ERR ERR ERR ERR ERR NOT NOT NOTRR ERR ERR NOT NOT NOTRR ERR ERR NOT NOT NOTRR ERR ERR NOT NOT NOT "
+        );
         elements[i] = canRenderData(receptor) && (
           <div className="drugCategories">
             <Accordion.Item eventKey={receptor}>
@@ -167,7 +182,6 @@ export default function StackAnalysis({
             console.log("no short term effects for ", curReceptor.name);
           Object.keys(curReceptor.effect.agonist["short_term"]).map(
             (effect) => {
-              
               console.log("?!!!!", effects);
               if (curReceptor.moa.agonist[effect]) {
                 const specificEffect = curReceptor.moa.agonist[effect];
@@ -201,7 +215,7 @@ export default function StackAnalysis({
               } else {
                 effects["antagonist"][effect] +=
                   curReceptor.effect.antagonist["short_term"][effect];
-                }
+              }
             }
           );
         } else if (activityData.agonism > 0) {
@@ -220,7 +234,10 @@ export default function StackAnalysis({
                 effects["agonist"][effect] =
                   curReceptor.effect.agonist["short_term"][effect];
               } else {
-                console.log("IS AG NAN!!!!!??????: ",isNaN(effects["agonist"][effect]))
+                console.log(
+                  "IS AG NAN!!!!!??????: ",
+                  isNaN(effects["agonist"][effect])
+                );
                 effects["agonist"][effect] +=
                   curReceptor.effect.agonist["short_term"][effect];
               }
@@ -236,16 +253,19 @@ export default function StackAnalysis({
                 specificEffect["receptor"] = curReceptor["name"];
                 specificEffect["activity"] = "antagonism";
                 effects.moa.antagonist.push(specificEffect);
-              } 
+              }
               if (!effects["antagonist"][effect]) {
                 effects["antagonist"][effect] =
                   curReceptor.effect.antagonist["short_term"][effect];
               } else {
                 effects["antagonist"][effect] +=
                   curReceptor.effect.antagonist["short_term"][effect];
-               
               }
-              if (  isNaN( effects["antagonist"][effect])) {console.log("!!!!!!!!!!!!!!!!!!!!!!! NOT A NUMBER !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")}
+              if (isNaN(effects["antagonist"][effect])) {
+                console.log(
+                  "!!!!!!!!!!!!!!!!!!!!!!! NOT A NUMBER !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+                );
+              }
             }
           );
         }
@@ -254,45 +274,56 @@ export default function StackAnalysis({
     // console.log(stackReceptors);
     // console.log(effects);
     const effectCategories = {};
-    console.log("??????????????????????????????????",effects)
+    console.log("??????????????????????????????????", effects);
     const categorize = (effect) => {
       if (!effectCategories[effect.label]) {
         effectCategories[effect.label] = [];
       }
       effectCategories[effect.label].push(effect);
+      console.log("??????????????????????????????????", effectCategories);
     };
     effects.moa.agonist.forEach((effect) => {
-      categorize(effect); 
+      categorize(effect);
     });
     effects.moa.antagonist.forEach((effect) => {
       categorize(effect);
     });
     // console.log(effectCategories)
-    setEffects(effectCategories)
+    setEffects(effectCategories);
     // console.log(effects, effectCategories);
     // return <>data here</>;
 
-
-    const effectsTotal = {agonism: {}, antagonism: {}}
-    const effectAntagonists = {}
+    const effectsTotal = { agonism: {}, antagonism: {} };
+    const effectAntagonists = {};
 
     Object.keys(effectCategories).forEach((eff) => {
-      const effect = effectCategories[eff]
-     
-      if (! effectsTotal[eff] ) {effectsTotal[eff] = 0}
-      effectsTotal[eff] += effect[0].effect
-      if (! effectsTotal['agonism'][eff] ) {  console.log(effect['activity']); effectsTotal['agonism'][eff] = {total: 0, count: 0}}
-      if (! effectsTotal['antagonism'][eff] ) {  console.log(effect['activity']); effectsTotal['antagonism'][eff] = {total: 0, count: 0}}
-      console.log(effect[0]['activity'],"qwerty!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-      effectsTotal[effect[0]['activity']][eff].total += effect[0].effect
-      effectsTotal[effect[0]['activity']][eff].count += 1
-    }
+      const effect = effectCategories[eff];
 
-    )
+      if (!effectsTotal[eff]) {
+        effectsTotal[eff] = 0;
+      }
+      effectsTotal[eff] += effect[0].effect;
+      if (!effectsTotal["agonism"][eff]) {
+        console.log(effect["activity"]);
+        effectsTotal["agonism"][eff] = { total: 0, count: 0 };
+      }
+      if (!effectsTotal["antagonism"][eff]) {
+        console.log(effect["activity"]);
+        effectsTotal["antagonism"][eff] = { total: 0, count: 0 };
+      }
+      effectsTotal[effect[0]["activity"]][eff].total += effect[0].effect;
+      effectsTotal[effect[0]["activity"]][eff].count += 1;
+    });
     const accordItems = [];
-    console.log("!!!!!!!!!!!",effects, effectCategories,receptors)
+    console.log("!!!!!!!!!!!", effects, effectCategories, receptors);
     Object.keys(effectCategories).forEach((effect, i) => {
-      console.log("NAN NAN NAN NAN NAN NAN NAN NAN NAN NAN NAN  ",effects.antagonist[effect],isNaN(effects.antagonist[effect]),effect,effectsTotal)
+      console.log(
+        "NAN NAN NAN NAN NAN NAN NAN NAN NAN NAN NAN  ",
+        effects.antagonist[effect],
+        isNaN(effects.antagonist[effect]),
+        effect,
+        effectsTotal
+      );
       accordItems[i] = (
         <Accordion.Item eventKey={effect}>
           {" "}
@@ -300,18 +331,15 @@ export default function StackAnalysis({
             {" "}
             {effect.replace("_", " ")}
             <>
-            <span className="data-spec"> &nbsp;</span>
-              <span className={"ef-green"}>
-  
-              </span>
+              <span className="data-spec"> &nbsp;</span>
+              <span className={"ef-green"}></span>
               <span className={"ef-red"}>
                 {" "}
-                {((!isNaN(effectsTotal[effect])) ? effectsTotal[effect] : 0 )+0}
-
+                {(!isNaN(effectsTotal[effect]) ? effectsTotal[effect] : 0) + 0}
               </span>
             </>
           </Accordion.Header>{" "}
-          <Accordion.Body >
+          <Accordion.Body>
             {" "}
             <Accordion flush>
               {effectCategories[effect].map((effect) => {

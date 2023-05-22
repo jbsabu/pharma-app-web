@@ -27,7 +27,7 @@ export default function Login() {
       ...prevData, // shallow copy all previous state
       [name]: value, // update specific key/value
     }));
-  };
+  }; 
 
   const onSubmit = async (event) => {
     event.preventDefault();
