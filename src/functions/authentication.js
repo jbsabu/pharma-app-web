@@ -35,8 +35,12 @@ export const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+export const auth = getAuth(app);
 const db = getFirestore(app);
+
+export const isLoggedIn = ()=>{
+  return localStorage.getItem("token")
+}
 
 export function signIn(req, res) {
   const signInType = req.params.type;

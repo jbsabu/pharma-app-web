@@ -133,6 +133,9 @@ export default function AddDrug() {
       method: "post",
       url: "http://localhost:3031/adddrug",
       data: fullData,
+      headers: {
+        authorization: localStorage.getItem("token"),
+      }
     };
     axios(config)
       .then((res) => {
@@ -142,13 +145,22 @@ export default function AddDrug() {
         if (res.status && res.status === 200) {
             setModalBody("Added to database.");
             setModalShow(true);
-          navigate("/adddrug");
+          navigate("/druglist");
         }
           else if (res.body.message) {
             setModalBody(res.body.message);
             setModalShow(true);
+            navigate("/adddrug/");
           }
-      })
+      }).catch((err) => {
+        console.log(err);
+        setModalBody("Error adding drug :: " + err);
+        setModalShow(true);
+        if (err.response.status === 401) {
+          navigate("/login");
+          localStorage.removeItem("token");
+        }
+      });
     
            // navigate(e.target.id)
       ;
@@ -254,9 +266,9 @@ const [tStyles, setTStyles] = useState({});
       <Container>
 
         <Accordion defaultActiveKey={"0"} className="add-substance-accord">
-        <Button onClick={()=>{setTStyles((tStyles !== undefined)? undefined : "button2")}} className={tStyles}>
-asdasdasd
-        </Button>   
+        {/* <Button onClick={()=>{setTStyles((tStyles !== undefined)? undefined : "button2")}} className={tStyles}>
+
+        </Button>    */}
           <Accordion.Item eventKey="1">
             <Accordion.Header>Review & Submit</Accordion.Header>
             <Accordion.Body>
