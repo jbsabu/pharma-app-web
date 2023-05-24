@@ -28,7 +28,7 @@ return (
             }}
           />
           <div className="drugSubtype">
-            <span className="data-spec">subtype</span> <br />{" "}
+            <span className="data-spec">subtype</span> <br />
             {drugList[drug].subtype.toLowerCase()}
           </div>
 
@@ -41,7 +41,7 @@ return (
             }}
           />
           <div className="drugCategories">
-            <span className="data-spec">categories</span> <br />{" "}
+            <span className="data-spec">categories</span> <br />
             {drugList[drug].category.map((cat) => ` ${cat};`)}
           </div>
           <hr
@@ -53,12 +53,12 @@ return (
             }}
           />
           <div className="drugActivity">
-            <span className="data-spec">activity</span> <br />{" "}
+            <span className="data-spec">activity</span> <br />
             <Accordion  flush>
               <Accordion.Item eventKey="0">
                 <Accordion.Header className="!!!!!!">Agonism</Accordion.Header>
                 <Accordion.Body>
-                  {drugList[drug].agonist.map((cat) => ` ${cat};`)}
+                  {drugList[drug].agonist.map((cat) => `${cat}${drugList[drug]['affinities'] ?`: ${drugList[drug]['affinities']['agonist'][cat]}`:""}; `)}
                 </Accordion.Body>
               </Accordion.Item>
               <Accordion.Item eventKey="1" sm={3}> 
@@ -80,17 +80,17 @@ return (
             }}
           />
           <div className="drugCategories">
-            <span className="data-spec">mechanism of action</span>{" "}
-            {"v"} <br />{" "}
+            <span className="data-spec">mechanism of action</span>
+            {"v"} <br />
             {drugList[drug].moa.map((moa) => (
               <span>
-                {" "}
-                <span className="data-spec">action</span> {">"}{" "}
+                
+                <span className="data-spec">action</span> {">"}&nbsp;
                 {moa.name.toLowerCase()}
                 <br /> <span className="data-spec">
-                  target
-                </span>{" "}
-                {">"} {moa.target.toLowerCase()} <br />
+                  target&nbsp;
+                </span>
+                {">"}&nbsp;{moa.target.toLowerCase()} <br />
                 <hr
                   style={{
                     width: "50%",

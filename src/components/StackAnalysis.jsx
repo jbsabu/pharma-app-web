@@ -16,68 +16,36 @@ export default function StackAnalysis({
   const [stackReceptors, setStackReceptors] = useState({});
 
   useEffect(() => {
-    // getReceptorData();
-    // console.log(receptors);
-    GetResponses();
-    // updateReceptorData();
     setStackReceptors({});
-    // console.log(selectedDrugs, stackReceptors);
+    // GetResponses();
+    updateReceptorData();
   }, []);
 
   useEffect(() => {
     // getReceptorData();
-    setStackReceptors({});
-    GetResponses();
+    // setStackReceptors({});
+    // GetResponses();
     updateReceptorData();
     // GetReceptorElements();
 
-    // console.log(receptorElements, responses, selectedDrugs, stackReceptors);
   }, [selectedDrugs]);
 
   useEffect(() => {
-    GetResponses();
+    // GetResponses();
+    // updateReceptorData();
   }, [stackReceptors]);
 
   const updateReceptorData = () => {
-    // const receptors = stackReceptors;
-    // console.log(receptors);
-    // setStackReceptors((oldReceptors) => {
-    //   Object.keys(selectedDrugs).map((drug, i) => {
-    //     // console.log("!!!!", oldReceptors);
-    //     selectedDrugs[drug].agonist.forEach((agonist) => {
-    //       if (!oldReceptors[agonist]) {
-    //         oldReceptors[agonist] = { agonism: 1, antagonism: 0 };
-    //       } else {
-    //         oldReceptors[agonist].agonism++;
-    //         if (oldReceptors[agonist].antagonism > 0)
-    //           oldReceptors[agonist].warning = "agonist+antagonist";
-    //       }
-    //     });
-    //     selectedDrugs[drug].antagonist.forEach((antagonist) => {
-    //       if (!oldReceptors[antagonist]) {
-    //         oldReceptors[antagonist] = { agonism: 0, antagonism: 1 };
-    //       } else {
-    //         oldReceptors[antagonist].antagonism++;
-    //         if (oldReceptors[antagonist].agonism > 0)
-    //           oldReceptors[antagonist].warning = "agonist+antagonist";
-    //       }
-    //     });
-    //   });
-    //   return oldReceptors;
-    // });
-
-    // console.log(stackAnalysis);
-    const oldReceptors = stackReceptors;
+    const oldReceptors = {stackReceptors};
+    console.log("updatedReceptorData:43:oldReceptors", oldReceptors);
     Object.keys(selectedDrugs).map((drug, i) => {
-      // console.log("!!!!", oldReceptors);
-      // console.log("key!!!!!!",key,selectedDrugs, oldReceptors);
       selectedDrugs[drug].agonist.forEach((agonist) => {
         if (!oldReceptors[agonist]) {
           oldReceptors[agonist] = {
-            agonism: 0,
+            agonism: 1,
             antagonism: 0,
             agonist: {},
-            antagonist: {},
+            antagonist: { [agonist]: true},
           };
         } else {
           oldReceptors[agonist].agonism++;
@@ -91,7 +59,7 @@ export default function StackAnalysis({
         if (!oldReceptors[antagonist]) {
           oldReceptors[antagonist] = {
             agonism: 0,
-            antagonism: 0,
+            antagonism: 1,
             agonist: {},
             antagonist: { [antagonist]: true },
           };
@@ -104,9 +72,10 @@ export default function StackAnalysis({
         }
       });
     });
-    GetReceptorElements();
-    // console.log(stackReceptors)
     setStackReceptors(oldReceptors);
+    GetReceptorElements(oldReceptors);
+    // console.log(stackReceptors)
+  
   };
   const canRenderData = (receptor, category) => {
     // console.log(receptor, receptors);
@@ -116,43 +85,35 @@ export default function StackAnalysis({
     return false;
   };
 
-  const GetReceptorElements = () => {
-    console.log(
-      stackReceptors,
-      "ERR ERR ERR ERR ERRERR ERR ERR ERR ERRERR ERR ERR ERR ERRERR ERR ERR ERR ERRERR ERR ERR ERR ERRERR ERR ERR ERR ERRERR ERR ERR ERR ERRERR ERR ERR ERR ERR"
-    );
+  const GetReceptorElements = (stackReceptors) => {
     const elements = [];
     {
       Object.keys(stackReceptors).map((receptor, i) => {
-        console.log(
-          "ERR ERR ERR ERR ERR NOT NOT NOTRR ERR ERR NOT NOT NOTRR ERR ERR NOT NOT NOTRR ERR ERR NOT NOT NOT "
-        );
         elements[i] = canRenderData(receptor) && (
           <div className="drugCategories">
             <Accordion.Item eventKey={receptor}>
               <Accordion.Header>
-                {" "}
-                <span className="data-spec">{receptor}</span> <br />{" "}
+                <span className="data-spec">{receptor}</span> <br />
               </Accordion.Header>
               <Accordion.Body>
-                <span className="data-spec">type</span>{" "}
+                <span className="data-spec">type&nbsp;</span>
                 {receptors[receptor].subtype}
                 <br /> <hr />
-                <span className="data-spec">locations:</span>{" "}
+                <span className="data-spec">locations:&nbsp;</span>
                 {receptors[receptor].location.map((loc) => {
                   return (
                     <>
                       <br />
-                      {loc}{" "}
+                      {loc}
                     </>
                   );
                 })}
                 <br /> <hr />
-                <span className="data-spec sc">agonists:</span>{" "}
+                <span className="data-spec sc">agonists:&nbsp;&nbsp;&nbsp;&nbsp;</span>
                 {stackReceptors[receptor].agonism}
-                <br /> <span className="data-spec pc">antagonists:</span>{" "}
+                <br /> <span className="data-spec pc">antagonists:&nbsp;&nbsp;</span>
                 {stackReceptors[receptor].antagonism}
-                <br />{" "}
+                <br />
               </Accordion.Body>
             </Accordion.Item>
           </div>
@@ -164,22 +125,27 @@ export default function StackAnalysis({
     //   elements
     // );
     setReceptorElements(elements);
+    GetResponses(stackReceptors)
   };
 
-  const GetResponses = () => {
+  const GetResponses = (stackReceptors) => {
     const effects = {};
     effects["agonist"] = {};
     effects["antagonist"] = {};
     effects["moa"] = {};
     effects["moa"]["agonist"] = [];
     effects["moa"]["antagonist"] = [];
+    console.log('stackreceptors=>',stackReceptors)
     Object.keys(stackReceptors).map((receptor) => {
       if (receptors[receptor]) {
-        const curReceptor = receptors[receptor];
+        console.log('c1')
+        const curReceptor = receptors[receptor]; 
         const activityData = stackReceptors[receptor];
         if (activityData.agonism > 0 && activityData.antagonism > 0) {
+          console.log('c2')
           if (!curReceptor.effect.agonist["short_term"])
             console.log("no short term effects for ", curReceptor.name);
+            console.log("curReceptor", curReceptor);
           Object.keys(curReceptor.effect.agonist["short_term"]).map(
             (effect) => {
               console.log("?!!!!", effects);
@@ -262,25 +228,19 @@ export default function StackAnalysis({
                   curReceptor.effect.antagonist["short_term"][effect];
               }
               if (isNaN(effects["antagonist"][effect])) {
-                console.log(
-                  "!!!!!!!!!!!!!!!!!!!!!!! NOT A NUMBER !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-                );
               }
             }
           );
         }
       }
     });
-    // console.log(stackReceptors);
-    // console.log(effects);
+
     const effectCategories = {};
-    console.log("??????????????????????????????????", effects);
     const categorize = (effect) => {
       if (!effectCategories[effect.label]) {
         effectCategories[effect.label] = [];
       }
       effectCategories[effect.label].push(effect);
-      console.log("??????????????????????????????????", effectCategories);
     };
     effects.moa.agonist.forEach((effect) => {
       categorize(effect);
@@ -288,10 +248,8 @@ export default function StackAnalysis({
     effects.moa.antagonist.forEach((effect) => {
       categorize(effect);
     });
-    // console.log(effectCategories)
+
     setEffects(effectCategories);
-    // console.log(effects, effectCategories);
-    // return <>data here</>;
 
     const effectsTotal = { agonism: {}, antagonism: {} };
     const effectAntagonists = {};
@@ -326,21 +284,17 @@ export default function StackAnalysis({
       );
       accordItems[i] = (
         <Accordion.Item eventKey={effect}>
-          {" "}
           <Accordion.Header>
-            {" "}
             {effect.replace("_", " ")}
             <>
               <span className="data-spec"> &nbsp;</span>
               <span className={"ef-green"}></span>
               <span className={"ef-red"}>
-                {" "}
                 {(!isNaN(effectsTotal[effect]) ? effectsTotal[effect] : 0) + 0}
               </span>
             </>
-          </Accordion.Header>{" "}
+          </Accordion.Header>
           <Accordion.Body>
-            {" "}
             <Accordion flush>
               {effectCategories[effect].map((effect) => {
                 return (
@@ -348,38 +302,36 @@ export default function StackAnalysis({
                     <Accordion.Header>
                       <span className="data-spec resp-recep">
                         {effect.receptor} &nbsp;
-                      </span>{" "}
-                      <br /> predicted response:{" "}
+                      </span>
+                      <br /> predicted response:
                       <span
                         className={effect.effect > 0 ? "ef-green" : "ef-red"}
                       >
-                        <br /> &nbsp;{" "}
+                        <br /> &nbsp;
                         {effect.effect > 0
                           ? `+${effect.effect}`
                           : effect.effect}
-                      </span>{" "}
-                    </Accordion.Header>{" "}
+                      </span>
+                    </Accordion.Header>
                     <Accordion.Body>
-                      <span className="data-spec">receptor</span>{" "}
-                      <span className="data-info">
-                        {" "}
-                        {effect.receptor} <br />{" "}
+                      <span className="data-spec">receptor</span>
+                      <span className="data-info">&nbsp;
+                        {effect.receptor} <br />
                       </span>
-                      <span className="data-spec">activity</span>{" "}
-                      <span className="data-info">
-                        {effect.activity} <br />{" "}
+                      <span className="data-spec">activity</span>
+                      <span className="data-info">&nbsp;
+                        {effect.activity} <br />
                       </span>
-                      <span className="data-spec">mechanism</span>{" "}
-                      <span className="data-info">
-                        {" "}
-                        {effect.mechanism} <br />{" "}
+                      <span className="data-spec">mechanism</span>
+                      <span className="data-info">&nbsp;
+                        {effect.mechanism} <br />
                       </span>
                     </Accordion.Body>
                   </Accordion.Item>
                 );
-              })}{" "}
+              })}
             </Accordion>
-          </Accordion.Body>{" "}
+          </Accordion.Body>
         </Accordion.Item>
       );
     });
@@ -391,8 +343,7 @@ export default function StackAnalysis({
       <Accordion flush>
         <Accordion.Item eventKey="targets">
           <Accordion.Header>
-            {" "}
-            <h3>targets</h3>{" "}
+            <h3>targets</h3>
           </Accordion.Header>
 
           <Accordion.Body>
@@ -401,14 +352,13 @@ export default function StackAnalysis({
         </Accordion.Item>
         <Accordion.Item eventKey="responses">
           <Accordion.Header>
-            {" "}
-            <h3>responses</h3>{" "}
+            <h3>responses</h3>
           </Accordion.Header>
           <Accordion.Body>
             <Accordion>{responses}</Accordion>
           </Accordion.Body>
         </Accordion.Item>
-      </Accordion>{" "}
+      </Accordion>
     </>
   );
 }
